@@ -1,0 +1,23 @@
+programa ejer2prac2
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+areas
+  Cuadrado: AreaP(10,10,20,20)
+robots
+  robot tipo1
+  variables
+    cant:numero
+  comenzar
+    mover
+    
+  fin
+variables
+  robot1:tipo1 
+comenzar
+  AsignarArea(robot1,Cuadrado);
+  Iniciar(robot1,10,10);
+fin

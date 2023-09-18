@@ -1,0 +1,2 @@
+ Localidad1 Municipio1 cant: 1514
+ Localidad1 Municipio2 cant: 3012

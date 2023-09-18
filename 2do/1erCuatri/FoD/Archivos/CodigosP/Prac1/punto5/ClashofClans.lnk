@@ -1,0 +1,67 @@
+{
+5. Realizar un programa para una tienda de celulares, que presente un menú con
+opciones para:
+a. Crear un archivo de registros no ordenados de celulares y cargarlo con datos
+ingresados desde un archivo de texto denominado “celulares.txt”. Los registros
+correspondientes a los celulares, deben contener: código de celular, el nombre,
+descripción, marca, precio, stock mínimo y el stock disponible.
+b. Listar en pantalla los datos de aquellos celulares que tengan un stock menor al
+stock mínimo.
+c. Listar en pantalla los celulares del archivo cuya descripción contenga una
+cadena de caracteres proporcionada por el usuario.
+d. Exportar el archivo creado en el inciso a) a un archivo de texto denominado
+“celulares.txt” con todos los celulares del mismo. El archivo de texto generado
+podría ser utilizado en un futuro como archivo de carga (ver inciso a), por lo que
+debería respetar el formato dado para este tipo de archivos en la NOTA 2.
+}
+
+
+program punto5;
+type
+celular  = record
+cod,precio,stockMin,stockDis:integer;
+nombre,des,marca:string;
+end;
+procedure leer(C:celular);
+begin
+writeln(C.nombre, C.des,C.marca);
+writeln(C.cod, C.precio,C.stockmin,C.stockdis);
+
+
+end;
+var 
+N:integer;
+T: Text; 
+regC: celular;
+ach: file of celular;
+BEGIN
+	writeln('1:CREAR ARCHIVO, 2:listar cel con stock menor al stock min, 3:listar en pantalla cel con descripcion, 4: exportar  a un txt');
+	read(N);
+	case N of
+	 1: begin
+	 assign(T,'celulares.txt');
+	 assign(ach,'celus');
+	 rewrite(ach);
+	 reset(T);
+	 while(not EoF(T)) do begin
+	 readln(T,regC.cod,regC.precio,regC.stockMin,regC.stockDis,regC.nombre);
+	 readln(T,regC.marca);
+	 readln(T,regC.des);
+	 write(ach,regC);
+	 end;
+	 end;
+	 2: begin
+	 assign(ach,'celus');
+	 reset(ach);
+	 while(not EoF(ach)) do begin
+	 read(ach,regC);
+	 leer(regC);
+	 end;
+	 end;
+	else writeln('error');
+	 end;
+	 
+	 
+	
+END.
+

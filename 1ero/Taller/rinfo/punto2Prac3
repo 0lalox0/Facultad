@@ -1,0 +1,124 @@
+programa ejer2prac2
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso agarrarTodo(ES cantP:numero ES cantF:numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      cantP := cantP + 1
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      cantF := cantF + 1
+  fin
+  proceso escalon(E altura:numero ES cant:numero E der:boolean E bloq:boolean)
+  variables
+    cantP:numero
+    cantF:numero
+    av:numero
+    ca:numero
+  comenzar
+    cantP := 0
+    cantF := 0
+    repetir altura
+      agarrarTodo(cantP,cantF)
+      mover
+    si(der)
+      derecha
+    sino
+      izquierda
+    repetir altura  
+      agarrarTodo(cantP,cantF)
+      si(bloq)
+        si(der)
+          av := PosAv + 1
+          ca := PosCa 
+        sino
+          ca := PosCa
+          av:= PosAv - 1
+        BloquearEsquina(av,PosCa)
+        Informar(av,PosCa)
+      mover 
+    si(der)
+      izquierda
+    sino
+      derecha
+    si(bloq)
+      agarrarTodo(cantP,cantF)
+      si(der)
+        izquierda
+      sino
+        derecha
+      mover
+      LiberarEsquina(av,PosCa)
+  fin
+areas
+  Area1: AreaP(1,1,19,100)
+  Area2: AreaP(21,1,37,100)
+  punto: AreaPC(20,16,20,16)
+  AreaJefe: AreaP(20,1,20,1)
+robots
+  robot tipo1
+  variables
+    Altura:numero
+    cant:numero
+    ID:numero
+  comenzar
+    RecibirMensaje(ID,jefe)
+    Altura := 5
+    cant := 0
+    repetir 4
+      escalon(Altura,cant,V,F)
+      Altura := Altura - 1
+    escalon(Altura,cant,V,V)
+    EnviarMensaje(ID,jefe)
+    derecha
+    repetir 5
+      escalon(Altura,cant,F,F)
+      Altura := Altura + 1
+  fin
+  robot tipo2
+  variables
+    Altura:numero
+    cant:numero
+    ID:numero
+  comenzar
+    RecibirMensaje(ID,jefe)
+    Altura := 5
+    cant := 0
+    repetir 4
+      escalon(Altura,cant,F,F)
+      Altura := Altura - 1
+    escalon(Altura,cant,F,V)
+    EnviarMensaje(ID,jefe)
+    izquierda
+    repetir 5
+      escalon(Altura,cant,V,F)
+      Altura := Altura + 1
+  fin
+  robot jefe
+  variables
+    ID:numero
+  comenzar
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    RecibirMensaje(ID,*)
+    Informar(ID)
+  fin
+variables
+  robot1:tipo1
+  robot2:tipo2
+  jefe:jefe
+comenzar
+  AsignarArea(robot1,Area1)
+  AsignarArea(robot2,Area2)
+  AsignarArea(robot2,punto)
+  AsignarArea(robot1,punto)
+  AsignarArea(jefe,AreaJefe)
+  Iniciar(jefe,20,1)
+  Iniciar(robot1,5,1)
+  Iniciar(robot2,35,1)
+fin

@@ -1,0 +1,70 @@
+programa ejer2prac2
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+areas
+  area1: AreaP(1,1,1,10)
+  area2: AreaP(2,11,2,20)
+  areaJefe: AreaP(2,1,2,1)
+robots
+  robot tipo1
+  variables
+    cant:numero
+    ID:numero
+  comenzar
+    cant := 0
+    RecibirMensaje(ID,jefe)
+    repetir 9
+      mientras HayFlorEnLaEsquina
+        tomarFlor
+        cant := cant + 1
+      mover
+    EnviarMensaje(ID,jefe)
+    EnviarMensaje(cant,jefe)
+  fin
+  robot tipojefe
+  variables
+    cant:numero
+    cant1:numero
+    cant2:numero
+    Max:numero
+    IDMax:numero
+    ID:numero
+  comenzar
+    Max := -1
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    repetir 2
+      RecibirMensaje(ID,*)
+      si(ID = 1)
+        RecibirMensaje(cant,robot1)
+        cant1 := cant
+      sino
+        RecibirMensaje(cant,robot2)
+        cant2 := cant
+      si(cant > Max)
+        IDMax := ID
+        Max := cant
+    Informar(IDMax)
+    Informar(Max)
+    si(cant1 > cant2)
+      cant := cant1 - cant2
+    sino
+      cant := cant2 - cant1
+    Informar(cant)
+  fin
+variables
+  robot1:tipo1
+  robot2:tipo1
+  jefe:tipojefe
+comenzar
+  AsignarArea(robot1,area1)
+  AsignarArea(robot2,area2)
+  AsignarArea(jefe,areaJefe)
+  Iniciar(robot1,1,1)
+  Iniciar(robot2,2,11)
+  Iniciar(jefe,2,1)
+fin
