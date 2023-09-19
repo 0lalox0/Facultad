@@ -1,0 +1,39 @@
+ejemplo sysycall fork+execv
+os.execvp(lista[0], lista) // carga otro programa, cortando el programa actual.
+el proceso es lo que permite ejecutar un programa
+guarda la informacion que se requiere, ese es el famoso "contexto"16
+
+herramientas:
+-cpu stress
+-procces explore
+
+
+
+32 prioridades  16 primeros son para el usuario.
+si la ventana esta en uso tiene una prioridad mas alta 	
+los proceso van cambiando de prioridad
+
+
+prioridad base
+
+0 inicializado / no existe?
+1ready to run
+2running
+3
+4 terminado
+5 espera/suspendido
+6trancision
+7no conocido
+porque avecesse achica el tiempo de cpu que se le da prioridd, porque hay un proceso con mayor prioridad
+
+
+en windows server tiene un cuantum mas grande.
+se le da mas tiempo a los proceso q estan en ejecuccion.
+Linux - deb, snap, AppImage or rpm
+
+
+Memoria
+el proceso tiene un espacio de direcciones -> codigo,datos,todo.
+
+
+
