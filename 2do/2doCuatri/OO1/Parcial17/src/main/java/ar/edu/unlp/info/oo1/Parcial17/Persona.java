@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.oo1.Parcial17;
+ackage ar.edu.unlp.info.oo1.Parcial17;
 
 /**
  * De esta forma crearemos las clases del ejercicio
